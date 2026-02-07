@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IITP BS-CSDA Notes Hub</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 20px; background: #f4f4f9; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        header { text-align: center; border-bottom: 2px solid #0056b3; padding-bottom: 20px; margin-bottom: 20px; }
+        h1 { color: #0056b3; margin: 0; }
+        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; font-size: 0.9rem; margin-bottom: 20px; }
+        .search-box { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; }
+        .card { border: 1px solid #eee; padding: 15px; margin-bottom: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .card:hover { background: #f8f9fa; }
+        .tag { background: #e2e6ea; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; }
+        .btn { text-decoration: none; background: #28a745; color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.9rem; }
+        footer { text-align: center; margin-top: 40px; font-size: 0.8rem; color: #666; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>📚 IITP BS-CSDA Notes</h1>
+        <p>Community-maintained summaries & resources</p>
+    </header>
+
+    <div class="warning">
+        <strong>⚠️ Legal Notice:</strong> We do not host Professor's slides or copyrighted books. Only student-written summaries and open resources.
+    </div>
+
+    <input type="text" class="search-box" placeholder="Search for 'Python', 'Stats', 'Calculus'..." onkeyup="filterNotes()">
+
+    <div id="notes-list">
+        </div>
+
+    <footer>
+        <p>Maintained by the Student Community.</p>
+        <p>Contribute on GitHub</p>
+    </footer>
+</div>
+
+<script>
+    // EDIT THIS LIST TO ADD NEW NOTES
+    const notes = [
+        { title: "Python Lists & Dicts Cheat Sheet", subject: "Python", type: "PDF", link: "#" },
+        { title: "Calculus - Derivatives Summary", subject: "Maths", type: "PDF", link: "#" },
+        { title: "Statistics - Week 1 Formula Sheet", subject: "Stats", type: "PDF", link: "#" },
+        { title: "English Interview Vocab", subject: "English", type: "PDF", link: "#" }
+    ];
+
+    const list = document.getElementById('notes-list');
+    function render(items) {
+        list.innerHTML = items.map(n => `
+            <div class="card">
+                <div>
+                    <strong>${n.title}</strong><br>
+                    <span class="tag">${n.subject}</span>
+                </div>
+                <a href="${n.link}" class="btn">Download</a>
+            </div>
+        `).join('');
+    }
+    render(notes);
+
+    function filterNotes() {
+        const query = document.querySelector('.search-box').value.toLowerCase();
+        render(notes.filter(n => n.title.toLowerCase().includes(query) || n.subject.toLowerCase().includes(query)));
+    }
+</script>
+
+</body>
+</html>
